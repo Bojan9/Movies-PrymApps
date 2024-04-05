@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Movies</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+      <a class="navbar-brand" href="#">Movies</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">About</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <div class="container">
+    <div class="row">
+      <div class="hero-section">
+        <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img src="http://www.impawards.com/2022/posters/batman_ver26_xlg.jpg" class="d-block w-100" alt="...">
+              <div class="carousel-caption d-none d-md-block">
+                <h5>The Batman</h5>
+                <p class="movie-categories">Action, Drama</p>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <img src="https://fiu-original.b-cdn.net/fontsinuse.com/use-images/26/26616/26616.jpeg?filename=interstellar_ver6_xlg.jpg" class="d-block w-100" alt="...">
+              <div class="carousel-caption d-none d-md-block">
+                <h5>Interstellar</h5>
+                <p class="movie-categories">Drama, Science fiction</p>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <img src="http://www.impawards.com/2021/posters/godzilla_vs_kong_ver19_xlg.jpg" class="d-block w-100" alt="...">
+              <div class="carousel-caption d-none d-md-block">
+                <h5>Godzilla vs. Kong</h5>
+                <p class="movie-categories">Science Fiction, Drama</p>
+              </div>
+            </div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- Categories -->
+  <div class="container mt-4">
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <h3>Filter Movies by Genre</h3>
+        <div id="genreButtons" class="btn-group">
+          <button type="button" class="btn btn-secondary filter-btn" data-genre="all">All</button>
+          <button type="button" class="btn btn-secondary filter-btn" data-genre="Action">Action</button>
+          <button type="button" class="btn btn-secondary filter-btn" data-genre="Comedy">Comedy</button>
+          <button type="button" class="btn btn-secondary filter-btn" data-genre="Drama">Drama</button>
+          <button type="button" class="btn btn-secondary filter-btn" data-genre="Animation">Animation</button>
+          <button type="button" class="btn btn-secondary filter-btn" data-genre="Science fiction">Sci-Fi</button>
+          <button type="button" class="btn btn-secondary filter-btn" data-genre="Thriller">Thriller</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container mt-3">
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addMovieModal">Add Movie</button>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- Movies -->
+  <div class="container mt-5">
+    <div class="row" id="moviesList">
+    </div>
+  </div>
+
+  <!-- Add Movie -->
+  <div class="modal fade" id="addMovieModal" tabindex="-1" aria-labelledby="addMovieModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addMovieModalLabel">Add Movie</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="addMovieForm">
+            <div class="mb-3">
+              <label for="imageUrl" class="form-label">Image URL</label>
+              <input type="text" class="form-control" id="imageUrl" required>
+            </div>
+            <div class="mb-3">
+              <label for="title" class="form-label">Title</label>
+              <input type="text" class="form-control" id="title" required maxlength="250">
+            </div>
+            <div class="mb-3">
+              <label for="year" class="form-label">Year</label>
+              <input type="text" class="form-control" id="year" required pattern="\d{4}" title="Please enter a valid year">
+            </div>
+            <div class="mb-3">
+              <label for="description" class="form-label">Description</label>
+              <textarea class="form-control" id="description" rows="3" required maxlength="500"></textarea>
+            </div>
+            <div class="mb-3">
+              <label for="genres" class="form-label">Genres</label>
+              <select class="form-select" id="genres" multiple required>
+                <option value="Action">Action</option>
+                <option value="Comedy">Comedy</option>
+                <option value="Drama">Drama</option>
+                <option value="Aniamtion">Aniamtion</option>
+                <option value="Science fiction">Science fiction</option>
+                <option value="Thriller">Thriller</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Add Movie</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+  
+  <!-- Quote -->
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col-md-6 offset-md-3 text-center">
+        <h3>Random Quote</h3>
+        <div id="quoteContainer"></div>
+        <button id="fetchQuoteBtn" class="btn btn-primary mt-3">Random Quote</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Movie Details -->
+  <div class="modal fade" id="movieDetailsModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Movie Details</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="main.js"></script>
+  <script src="get_api.js"></script>
+</body>
+</html>
